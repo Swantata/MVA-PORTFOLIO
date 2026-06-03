@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Gabrielle Eze Medical VA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --cream: #faf8f5;
+    --gold: #d4a843;
+    --white: #ffffff;
+    --grey: #64748b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--teal-light); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--teal-light); }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--navy);
+    padding: 140px 60px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%);
+  }
+
+  .page-header .section-tag {
+    display: inline-block;
+    color: var(--teal-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--white);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .page-header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* PATIENT INFO BANNER */
+  .patient-banner {
+    background: rgba(13,148,136,0.08);
+    border: 1px solid rgba(13,148,136,0.2);
+    border-radius: 16px;
+    padding: 32px 40px;
+    margin: 60px auto;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .patient-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  .patient-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+
+  .patient-info p {
+    color: var(--grey);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .patient-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .ptag {
+    background: var(--teal);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* PROJECTS */
+  .projects-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px 100px;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 16px 48px rgba(13,148,136,0.1);
+    transform: translateY(-2px);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 40px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .project-num {
+    width: 56px; height: 56px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .project-card:nth-child(2) .project-num { background: var(--teal); }
+  .project-card:nth-child(3) .project-num { background: #7c3aed; }
+  .project-card:nth-child(4) .project-num { background: #dc2626; }
+  .project-card:nth-child(5) .project-num { background: var(--gold); }
+
+  .project-meta { flex: 1; }
+
+  .project-type {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .project-tools {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tool-tag {
+    background: #f1f5f9;
+    color: var(--grey);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .project-status {
+    background: #dcfce7;
+    color: #166534;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .project-body {
+    padding: 32px 40px;
+  }
+
+  .project-desc {
+    color: var(--grey);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+
+  .deliverables-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .deliverables-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .deliverables-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--grey);
+  }
+
+  .deliverables-list li::before {
+    content: '✓';
+    width: 22px; height: 22px;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .project-footer {
+    padding: 20px 40px;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .view-sample {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+
+  .view-sample:hover {
+    background: var(--teal-light);
+    transform: translateY(-1px);
+  }
+
+  .folder-note {
+    font-size: 0.82rem;
+    color: var(--grey);
+  }
+
+  /* WORK SAMPLES SECTION */
+  .samples-section {
+    background: var(--navy);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .samples-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .samples-section p {
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    font-size: 1rem;
+  }
+
+  .folder-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+
+  .folder-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(212,168,67,0.4);
+  }
+
+  footer {
+    background: var(--navy);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.1rem;
+  }
+
+  .footer-logo span { color: var(--teal-light); }
+  .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    .page-header { padding: 100px 24px 60px; }
+    .patient-banner { margin: 40px 24px; padding: 24px; }
+    .projects-container { padding: 0 24px 60px; }
+    .project-header { flex-wrap: wrap; padding: 24px; }
+    .project-body { padding: 24px; }
+    .deliverables-list { grid-template-columns: 1fr; }
+    .project-footer { padding: 16px 24px; }
+    .samples-section { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Gabrielle<span>Eze</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="section-tag">MVA Practical Training</div>
+  <h1>My Projects</h1>
+  <p>Five hands-on Medical VA projects completed using real patient data, professional healthcare tools and live EMR systems.</p>
+</div>
+
+<div class="projects-container">
+
+  <!-- PATIENT BANNER -->
+  <div class="patient-banner">
+    <div class="patient-icon">🏥</div>
+    <div class="patient-info">
+      <h3>Training Patient — Mr. Daniel James Thompson Jr.</h3>
+      <p>All five projects use the complete hypothetical patient record for Mr. Daniel James Thompson Jr. — a fictional record created for Medical VA training purposes. Clinic: <strong>BLUECROSS Medical Center</strong> | Tools: Airtable + OpenEMR | Completed: 2026</p>
+      <div class="patient-tags">
+        <span class="ptag">DOB: 08/14/1987</span>
+        <span class="ptag">Primary: BCBS Gold Plus</span>
+        <span class="ptag">Provider: Dr. Emily Carter</span>
+        <span class="ptag">External ID: EXT-20458</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num">1</div>
+      <div class="project-meta">
+        <div class="project-type">Script Writing / Communication</div>
+        <div class="project-title">Appointment Scheduling Script</div>
+        <div class="project-tools">
+          <span class="tool-tag">Google Docs</span>
+          <span class="tool-tag">Patient Communication</span>
+          <span class="tool-tag">SMS Template</span>
+          <span class="tool-tag">Email Template</span>
+        </div>
+      </div>
+      <div class="project-status">✓ Complete</div>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">Created a professional word-for-word phone scheduling script for calling Mr. Daniel Thompson to schedule his appointment with Dr. Emily Carter. The script covers greeting, identity verification, insurance confirmation, appointment booking, co-pay disclosure and follow-up confirmation. Includes both an SMS and email confirmation template using the patient's actual contact details.</p>
+      <div class="deliverables-title">Deliverables Completed</div>
+      <ul class="deliverables-list">
+        <li>Full phone scheduling script (greeting to close)</li>
+        <li>Identity verification protocol (DOB confirmation)</li>
+        <li>Insurance and co-pay disclosure ($25 BCBS)</li>
+        <li>No-answer / voicemail protocol included</li>
+        <li>SMS confirmation template — (832) 555-9045</li>
+        <li>Email confirmation template — daniel.thompson@email.com</li>
+      </ul>
+    </div>
+    <div class="project-footer">
+      <span class="folder-note">📁 Saved in MVA Work Samples — Google Drive</span>
+      <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="view-sample">View Work Sample →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num">2</div>
+      <div class="project-meta">
+        <div class="project-type">Documentation / Data Entry</div>
+        <div class="project-title">Patient Intake Form Completion</div>
+        <div class="project-tools">
+          <span class="tool-tag">Google Forms</span>
+          <span class="tool-tag">4 Sections</span>
+          <span class="tool-tag">BLUECROSS</span>
+        </div>
+      </div>
+      <div class="project-status">✓ Complete</div>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">Completed a full patient intake form in Google Forms on behalf of Mr. Daniel Thompson across four sections — Personal Identity, Contact Information, Employer Details and Demographics/Stats. The form was built from scratch using BLUECROSS Medical Center branding and submitted with all fields accurately populated. A verbal confirmation note lists all fields requiring phone verification before submission.</p>
+      <div class="deliverables-title">Deliverables Completed</div>
+      <ul class="deliverables-list">
+        <li>Section 1: Personal Identity (16 fields)</li>
+        <li>Section 2: Contact Information (15 fields)</li>
+        <li>Section 3: Employer Details (6 fields)</li>
+        <li>Section 4: Demographics/Stats (14 fields)</li>
+        <li>Verbal confirmation note — 7 fields identified</li>
+        <li>Form submitted and screenshot captured</li>
+      </ul>
+    </div>
+    <div class="project-footer">
+      <span class="folder-note">📁 Saved in MVA Work Samples — Google Drive</span>
+      <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="view-sample">View Work Sample →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num">3</div>
+      <div class="project-meta">
+        <div class="project-type">Insurance / Documentation</div>
+        <div class="project-title">Insurance Verification — 3 Layers</div>
+        <div class="project-tools">
+          <span class="tool-tag">BCBS Gold Plus</span>
+          <span class="tool-tag">Aetna Silver Care</span>
+          <span class="tool-tag">Texas Medicaid</span>
+        </div>
+      </div>
+      <div class="project-status">✓ Complete</div>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">Completed a full three-layer insurance verification for Mr. Daniel Thompson — Primary (Blue Cross Blue Shield BCBS Gold Plus), Secondary (Aetna Silver Care via spouse Sarah Thompson) and Tertiary (Texas Medicaid Basic). All policy numbers, group numbers, effective dates, subscriber relationships, co-pays and accept assignment fields verified. Created a reusable 10-point insurance verification checklist for future patients.</p>
+      <div class="deliverables-title">Deliverables Completed</div>
+      <ul class="deliverables-list">
+        <li>Primary: BCBS Gold Plus — Policy BC45789211</li>
+        <li>Secondary: Aetna Silver Care — Policy AT9934811</li>
+        <li>Tertiary: TX Medicaid Basic — Policy TXM5588123</li>
+        <li>All co-pays verified ($25 / $15 / $0)</li>
+        <li>Subscriber relationships confirmed (Self / Spouse / Self)</li>
+        <li>10-point reusable verification checklist created</li>
+      </ul>
+    </div>
+    <div class="project-footer">
+      <span class="folder-note">📁 Saved in MVA Work Samples — Google Drive</span>
+      <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="view-sample">View Work Sample →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 4 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num">4</div>
+      <div class="project-meta">
+        <div class="project-type">Database Management</div>
+        <div class="project-title">Airtable Patient Database — 9 Tables</div>
+        <div class="project-tools">
+          <span class="tool-tag">Airtable</span>
+          <span class="tool-tag">9 Linked Tables</span>
+          <span class="tool-tag">Database Design</span>
+        </div>
+      </div>
+      <div class="project-status">✓ Complete</div>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">Built a complete 9-table patient database from scratch in Airtable for BLUECROSS Medical Center. Each table represents one section of the patient record — Patient Information, Contact, Choices, Employer, Stats, Related/Guardian, Primary Insurance, Secondary Insurance and Tertiary Insurance. All tables linked back to the master Patient Information table using Airtable's Link to another record feature, mirroring how real healthcare EMR systems like Epic and Athena organise patient data.</p>
+      <div class="deliverables-title">Deliverables Completed</div>
+      <ul class="deliverables-list">
+        <li>Table 1: Patient Information (18 fields)</li>
+        <li>Table 2: Contact (15 fields)</li>
+        <li>Table 3: Choices/Preferences (18 fields)</li>
+        <li>Table 4: Employer (9 fields)</li>
+        <li>Table 5: Stats/Demographics (14 fields)</li>
+        <li>Table 6: Related/Guardian (8 fields)</li>
+        <li>Table 7: Primary Insurance — BCBS (14 fields)</li>
+        <li>Table 8: Secondary Insurance — Aetna (15 fields)</li>
+        <li>Table 9: Tertiary Insurance — Medicaid (14 fields)</li>
+      </ul>
+    </div>
+    <div class="project-footer">
+      <span class="folder-note">📁 Screen recording saved in MVA Work Samples — Google Drive</span>
+      <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="view-sample">View Work Sample →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 5 -->
+  <div class="project-card">
+    <div class="project-header">
+      <div class="project-num">5</div>
+      <div class="project-meta">
+        <div class="project-type">EMR System — Live Registration</div>
+        <div class="project-title">Patient Registration in OpenEMR</div>
+        <div class="project-tools">
+          <span class="tool-tag">OpenEMR</span>
+          <span class="tool-tag">Live System</span>
+          <span class="tool-tag">BLUECROSS</span>
+          <span class="tool-tag">3 Insurance Layers</span>
+        </div>
+      </div>
+      <div class="project-status">✓ Complete</div>
+    </div>
+    <div class="project-body">
+      <p class="project-desc">Logged into the live OpenEMR demo system and registered Mr. Daniel James Thompson Jr. as a brand new patient at BLUECROSS Medical Center. Completed the Demographics tab, Choices/Preferences tab and all three Insurance layers (Primary, Secondary and Tertiary) in the correct sequence. Saved each tab before navigating away, confirmed the patient record was created by searching "Thompson" in the patient search, and captured a screenshot of the completed patient summary showing name, demographics and all insurance information.</p>
+      <div class="deliverables-title">Deliverables Completed</div>
+      <ul class="deliverables-list">
+        <li>Demographics tab — all fields completed</li>
+        <li>Choices/Preferences tab — all communication preferences set</li>
+        <li>Primary insurance entered — BCBS Gold Plus</li>
+        <li>Secondary insurance entered — Aetna Silver Care</li>
+        <li>Tertiary insurance entered — TX Medicaid Basic</li>
+        <li>Patient summary screenshot captured and saved</li>
+      </ul>
+    </div>
+    <div class="project-footer">
+      <span class="folder-note">📁 Screenshot + video saved in MVA Work Samples — Google Drive</span>
+      <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="view-sample">View Work Sample →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- WORK SAMPLES -->
+<section class="samples-section">
+  <h2>View All Work Samples</h2>
+  <p>All screenshots, screen recordings and completed deliverables are available in my Google Drive work samples folder.</p>
+  <a href="https://drive.google.com/drive/folders/1KTY-WQK07VVfAg1sI3pgFmz_dZ5b00Yt?usp=drive_link" class="folder-btn">
+    📁 Open MVA Work Samples Folder
+  </a>
+</section>
+
+<footer>
+  <div class="footer-logo">Gabrielle<span>Eze</span> — Medical VA</div>
+  <div class="footer-copy">© 2026 Gabrielle Eze. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
